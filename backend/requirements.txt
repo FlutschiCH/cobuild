@@ -1,0 +1,10 @@
+Flask
+Flask-SocketIO
+gevent-websocket
+SQLAlchemy
+PyMySQL
+Flask-Cors
+gunicorn
+python-dotenv
+google-generativeai
+Flask-Login
