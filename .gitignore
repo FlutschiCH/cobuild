@@ -1,0 +1,11 @@
+/backend/logs
+/backend/chats
+/backend/.continue
+/backend/.history
+/backend/.committed_chats
+/backend/uploads
+
+/backend/react
+/backend/master-template
+
+.env

@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify, Response
-from ..config import Config
-import google.generativeai as genai
+from config import Config
+from google import genai
 
 chat = Blueprint('chat', __name__)
 
-genai.configure(api_key=Config.GOOGLE_API_KEY)
+client = genai.Client(api_key=Config.GOOGLE_API_KEY)
 
 @chat.route('/prompt', methods=['POST'])
 def stream_prompt():
@@ -16,10 +16,13 @@ def stream_prompt():
 
     def generate():
         try:
-            model = genai.GenerativeModel('gemini-pro')
-            response = model.generate_content(prompt, stream=True)
+            response = client.models.generate_content_stream(
+                model='gemini-2.5-flash',
+                contents=prompt
+            )
             for chunk in response:
-                yield f"data: {chunk.text}\n\n"
+                if chunk.text:
+                    yield f"data: {chunk.text}\n\n"
         except Exception as e:
             yield f"data: {{'error': '{str(e)}'}}\n\n"
 

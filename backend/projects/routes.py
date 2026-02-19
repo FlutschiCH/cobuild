@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-from ..models import Project, File, db
+from models import Project, File
+from extensions import db
 from flask_login import login_required, current_user
 
 projects = Blueprint('projects', __name__)

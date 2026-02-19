@@ -1,0 +1,5 @@
+# Ignore the entire frontend directory
+frontend/
+
+# You can also ignore specific file types if needed
+*.test.js
